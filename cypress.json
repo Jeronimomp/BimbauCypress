@@ -1,5 +1,7 @@
 {
 
     "chromeWebSecurity": false,
-    "ng-recaptcha": "^7.0.1"
+    "ng-recaptcha": "^7.0.1",
+
+  
 }
