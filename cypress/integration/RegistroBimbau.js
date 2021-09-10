@@ -7,7 +7,7 @@
     
     cy.get(':nth-child(4) > .header-container > .login-container > .btn-register').click();
     cy.get('.toast__close-button > svg').click();//cerrar pop up de cookies
-    cy.get(':nth-child(1) > .field > .ui > input').type('angeldavid25@gmail.com');
+    cy.get(':nth-child(1) > .field > .ui > input').type('angeldavid55@gmail.com');
     cy.get(':nth-child(2) > .field > .ui').click({force: true});
     cy.get('.visible > :nth-child(2) > .text').click({force: true});
     cy.get(':nth-child(3) > .field > .ui > input').type('1063283967',{force: true});
@@ -19,11 +19,22 @@
     cy.get('.mt-4 > .field > .ui > input').type('Vendedor',{force: true});
   
 
-
-    cy.get('iframe[src*=recaptcha]')
-    .its('0.contentDocument')
-    .should(d => d.getElementById('recaptcha-token').click({force: true}));
-
+    function cambiar(){
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       // document.getElementById('recaptcha-token').setAttribute('type', 'text');
+        $("#recaptcha-token").prop("type", "text");
+        };
+    cy.wait(500);
+  
+   cy.get('iframe')
+    .first()
+    .its('0.contentDocument.body')
+    .should('not.be.undefined')
+    .and('not.be.empty')
+    .then(cy.wrap)
+    .find('#recaptcha-anchor')
+    .should('be.visible')
+    .click();
     
     cy.wait(10000);
     cy.get('[style="display: flex; justify-content: center; margin-top: 2rem;"] > .ui').click({force: true});
